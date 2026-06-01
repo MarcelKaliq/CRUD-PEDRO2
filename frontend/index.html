@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Lista de Animes e Mídias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="stats-container">
+            <div class="stat-card">
+                <i class="fa-solid fa-list-check"></i>
+                <div>
+                    <span class="stat-value" id="totalMidias">0</span>
+                    <span class="stat-label">Total Cadastrado</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-square-check"></i>
+                <div>
+                    <span class="stat-value" id="totalAssistidos">0</span>
+                    <span class="stat-label">Assistidos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-container">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchBar" placeholder="Pesquisar título...">
+            </div>
+            <button id="themeToggle" class="btn-theme" title="Alternar tema">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="left-panel">
+            <h2><i class="fa-solid fa-plus"></i> Lista de Assistidos</h2>
+            <form id="mediaForm">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" required placeholder="Ex: Death Note">
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select id="tipo" required>
+                        <option value="Anime">Anime</option>
+                        <option value="Filme">Filme</option>
+                        <option value="Série">Série</option>
+                        <option value="Desenho">Desenho</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nota">Nota</label>
+                    <select id="nota">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="Assistirei">Assistirei</option>
+                        <option value="Assistindo">Assistindo</option>
+                        <option value="Assistido">Assistido</option>
+                    </select>
+                </div>
+
+                <button type="submit">Salvar na Lista</button>
+            </form>
+        </div>
+
+        <div class="right-panel">
+            
+            <details class="lista-anime" open>
+                <summary>Animes</summary>
+                <div class="list-content" id="listAnime"></div>
+            </details>
+
+            <details class="lista-filme">
+                <summary>Filmes</summary>
+                <div class="list-content" id="listFilme"></div>
+            </details>
+
+            <details class="lista-serie">
+                <summary>Séries</summary>
+                <div class="list-content" id="listSerie"></div>
+            </details>
+
+            <details class="lista-desenho">
+                <summary>Desenhos</summary>
+                <div class="list-content" id="listDesenho"></div>
+            </details>
+
+        </div>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
