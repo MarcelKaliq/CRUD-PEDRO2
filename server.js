@@ -1,18 +1,16 @@
 const express = require('express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const mongoose = require('mongoose'); // Garante que o mongoose está aqui
+const mongoose = require('mongoose'); 
 const path = require('path');
-require('dotenv').config(); // Carrega suas variáveis do arquivo .env
+require('dotenv').config(); 
 
 const app = express();
 
-// Middlewares essenciais para o servidor funcionar
 app.use(express.json());
-// Faz o Express servir os arquivos da sua pasta frontend na rota raiz (/)
+
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// CONFIGURAÇÃO DO SWAGGER (Injetando as rotas como objeto JS puro para não quebrar)
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
@@ -100,22 +98,19 @@ const swaggerOptions = {
             }
         }
     },
-    apis: [], // Deixado vazio para o formatador não quebrar os comentários!
+    apis: [], 
 };
 
-// Ativa a rota da documentação
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// IMPORTAÇÃO DAS SUAS ROTAS (Deixe o arquivo routes/animeRoutes.js limpo de comentários)
 const animeRoutes = require('./routes/animeRoutes');
 app.use(animeRoutes);
-// CONEXÃO COM O MONGOOSE (Ajuste se o seu projeto usar uma string diferente)
+
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/crud-animes')
     .then(() => console.log('MongoDB Conectado'))
     .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
-// PORTA E INICIALIZAÇÃO DO SERVIDOR (O que estava faltando para ir pro ar!)
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Rodando na porta ${PORT}`);
